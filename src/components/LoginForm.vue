@@ -1,6 +1,6 @@
 <template>
   <form>
-    <div>Sign Up</div>
+    <div>Log In</div>
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input
@@ -26,22 +26,8 @@
 
 <script>
 export default {
-  methods: {
-    // change val of buttonView
-    changeButtonView() {
-      this.$store.commit("setButtonView");
-      this.$store.commit("setFilteredLocations");
-    },
-  },
+  name: "login-form",
 };
 </script>
 
-<style scoped>
-#nav-area {
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-  box-shadow: 0px -4px 5px 0px rgba(1, 1, 1, 0.1);
-  background-color: #70c1b3;
-}
-</style>
+<style></style>

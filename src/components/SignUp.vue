@@ -1,5 +1,5 @@
 <template>
-  <input class="btn btn-primary" type="button" value="Input" />
+  <input class="btn btn-primary" type="button" value="Sign Up" />
 </template>
 
 <script>
