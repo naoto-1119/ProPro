@@ -1,31 +1,10 @@
 <template>
-  <div class="wrapper">
-    <ToggleButton class="toggle-button" />
-    <div class="row">
-      <ProfileImage class="profile-image" />
-      <ProfileSummary class="profile-summary" />
-      <ProfileFeature class="profile-feature" />
-    </div>
-    <TwitterLink />
-  </div>
+  <div class="wrapper"></div>
 </template>
 
 <script>
-import ProfileImage from "./ProfileImage.vue";
-import TwitterLink from "./TwitterLink.vue";
-import ProfileSummary from "./ProfileSummary.vue";
-import ProfileFeature from "./ProfileFeature.vue";
-import ToggleButton from "./ToggleButton.vue";
-
 export default {
-  name: "profile page",
-  components: {
-    ProfileImage,
-    TwitterLink,
-    ProfileSummary,
-    ProfileFeature,
-    ToggleButton,
-  },
+  name: "product-page",
 };
 </script>
 
