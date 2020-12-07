@@ -49,7 +49,7 @@ export default {
 .wrapper {
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
+  width: 50%;
 }
 .toggle-button {
   margin-left: auto;
