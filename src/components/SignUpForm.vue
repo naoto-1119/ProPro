@@ -1,6 +1,6 @@
 <template>
   <form class="container">
-    <h1>Log In</h1>
+    <h1>Sign Up</h1>
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input
@@ -20,13 +20,25 @@
         placeholder="Password"
       />
     </div>
-    <button type="submit" class="btn btn-primary">Log In</button>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      v-on:click="changeProfileFormView"
+    >
+      SignUp
+    </button>
   </form>
 </template>
 
 <script>
 export default {
-  name: "login-form",
+  name: "sign-up-form",
+  methods: {
+    changeProfileFormView() {
+      console.log("test");
+      this.$store.commit("changeProfileFormView");
+    },
+  },
 };
 </script>
 

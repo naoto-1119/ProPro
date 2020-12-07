@@ -1,11 +1,11 @@
 <template>
-  <form>
+  <form class="container">
     <div>Sign Up</div>
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input
         type="email"
-        class="form-control-sm"
+        class="form-control"
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
         placeholder="Enter email"
@@ -15,33 +15,25 @@
       <label for="exampleInputPassword1">Password</label>
       <input
         type="password"
-        class="form-control-sm"
+        class="form-control"
         id="exampleInputPassword1"
         placeholder="Password"
       />
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" v-on:click="changeProfileFormView">Sign Up</button>
   </form>
 </template>
 
 <script>
 export default {
+  name: "sign-up",
   methods: {
     // change val of buttonView
-    changeButtonView() {
-      this.$store.commit("setButtonView");
-      this.$store.commit("setFilteredLocations");
+    changeProfileFormView() {
+      this.$store.commit("changeProfileFormView");
     },
   },
 };
-</script>
 
-<style scoped>
-#nav-area {
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-  box-shadow: 0px -4px 5px 0px rgba(1, 1, 1, 0.1);
-  background-color: #70c1b3;
-}
+<style>
 </style>

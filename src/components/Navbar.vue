@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="/">Sell Yourself</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -17,23 +17,26 @@
         <a class="nav-item nav-link active" href="#"
           >Home <span class="sr-only">(current)</span></a
         >
-        <a class="nav-item nav-link" href="#">Features</a>
-        <a class="nav-item nav-link" href="#">Pricing</a>
-        <a class="nav-item nav-link disabled" href="#">Disabled</a>
+        <a class="nav-item nav-link active" href="#"
+          >Profile <span class="sr-only">(current)</span></a
+        >
+        <a class="nav-item nav-link active" href="#"
+          >Product <span class="sr-only">(current)</span></a
+        >
       </div>
       <Login class="login" />
-      <SignUp class="sign-up"/>
+      <SignUp class="sign-up" />
     </div>
   </nav>
 </template>
 
 <script>
-import Login from "./Login.vue"
-import SignUp from "./SignUp.vue"
+import Login from "./Login.vue";
+import SignUp from "./SignUp.vue";
 
 export default {
   name: "navbar",
-  components:{
+  components: {
     Login,
     SignUp,
   },
@@ -42,5 +45,12 @@ export default {
 </script>
 
 <style>
-
+.login {
+  position: absolute;
+  margin-left: 80%;
+}
+.sign-up {
+  position: absolute;
+  margin-left: 85%;
+}
 </style>

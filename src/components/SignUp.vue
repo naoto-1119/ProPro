@@ -1,11 +1,17 @@
 <template>
-  <input class="btn btn-primary" type="button" value="Sign Up" />
+  <button type="button" class="btn btn-primary" v-on:click="changeSignUpView">
+    Sign Up
+  </button>
 </template>
 
 <script>
 export default {
-  name: "login-button",
-  methods: {},
+  name: "sign-up-button",
+  methods: {
+    changeSignUpView() {
+      this.$store.commit("changeSignUpView");
+    },
+  },
 };
 </script>
 
