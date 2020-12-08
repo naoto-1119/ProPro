@@ -1,7 +1,10 @@
 <template>
   <div>
-    <b-button id="show-btn" @click="$bvModal.show('bv-modal-example')"
-      >Open Modal</b-button
+    <b-button
+      variant="success"
+      id="show-btn"
+      @click="$bvModal.show('bv-modal-example')"
+      >Add Product</b-button
     >
 
     <b-modal id="bv-modal-example" hide-footer>
@@ -71,6 +74,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "create-product",
   data() {
@@ -83,7 +88,7 @@ export default {
     };
   },
   methods: {
-    validateInput() {
+    async validateInput() {
       if (!this.productName) {
         alert("Name field is Empty!");
       } else if (!this.productCategory) {
@@ -95,6 +100,16 @@ export default {
         console.log("Product Category:", this.productCategory);
         console.log("Product Description:", this.productDescription);
         console.log("Product Price: $", this.productPrice);
+        alert("Product Succesfully Added");
+        const result = await axios.post("/users/product", {
+          name: this.productName,
+          image: this.productImage,
+          description: this.productDescription,
+          category: this.productCategory,
+          price: this.productPrice,
+          user_id: this.$store.state.userId,
+        });
+        console.log("result :", result);
         this.$bvModal.hide("bv-modal-example");
       }
     },

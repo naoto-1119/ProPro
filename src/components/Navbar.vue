@@ -14,12 +14,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="#"
-          >Profile <span class="sr-only">(current)</span></a
+        <button
+          class="nav-item nav-link active"
+          v-on:click="changeToAllProfileView"
         >
-        <a class="nav-item nav-link active" href="#"
-          >Product <span class="sr-only">(current)</span></a
+          Profile <span class="sr-only">(current)</span>
+        </button>
+        <button
+          class="nav-item nav-link active"
+          v-on:click="changeToAllProductView"
         >
+          Product <span class="sr-only">(current)</span>
+        </button>
       </div>
       <Login class="login" />
       <SignUp class="sign-up" />
@@ -37,7 +43,14 @@ export default {
     Login,
     SignUp,
   },
-  methods: {},
+  methods: {
+    changeToAllProfileView() {
+      this.$store.commit("changeToAllProfileView");
+    },
+    changeToAllProductView() {
+      this.$store.commit("changeToAllProductView");
+    },
+  },
 };
 </script>
 
@@ -49,5 +62,9 @@ export default {
 .sign-up {
   position: absolute;
   margin-left: 75%;
+}
+.nav-item {
+  background: none;
+  margin-right: 8px;
 }
 </style>

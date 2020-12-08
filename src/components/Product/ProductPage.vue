@@ -10,6 +10,7 @@
 import ProductFilter from "./ProductFilter";
 import ProductImage from "./ProductImage";
 import CreateProduct from "./CreateProduct";
+import axios from "axios";
 
 export default {
   name: "product-page",
@@ -17,6 +18,13 @@ export default {
     ProductFilter,
     ProductImage,
     CreateProduct,
+  },
+  async mounted() {
+    const product = await axios.get("/users/product/id", {
+      params: { userId: this.$store.state.userId },
+    });
+    console.log("product:", product.data);
+    this.$store.commit("setProductInfo", product.data);
   },
 };
 </script>

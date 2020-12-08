@@ -11,20 +11,30 @@ export default new Vuex.Store({
     profileFormView: false,
     profilePage: false,
     loginStatus: false,
+    allProfileView: false,
+    allProductView: false,
     profileOrProductView: "profile",
     userEmail: null,
     userId: null,
     userName: null,
+    profileDescription: null,
     twitterScreenName: null,
+    productInfo: [],
+    allProfile: [],
+    allProduct: [],
   },
   mutations: {
     changeLoginView(state) {
+      state.allProductView = false;
+      state.allProfileView = false;
       state.signUpView = false;
-      state.loginView = !state.loginView;
+      state.loginView = true;
     },
     changeSignUpView(state) {
       state.loginView = false;
-      state.signUpView = !state.signUpView;
+      state.allProductView = false;
+      state.allProfileView = false;
+      state.signUpView = true;
     },
     changeProfileFormView(state) {
       state.signUpView = false;
@@ -42,6 +52,22 @@ export default new Vuex.Store({
     changeToProductView(state) {
       state.profileOrProductView = "product";
     },
+    changeToAllProfileView(state) {
+      state.loginView = false;
+      state.signUpView = false;
+      state.profileFormView = false;
+      state.profileOrProductView = "profile";
+      state.allProductView = false;
+      state.allProfileView = true;
+    },
+    changeToAllProductView(state) {
+      state.loginView = false;
+      state.signUpView = false;
+      state.profileFormView = false;
+      state.profileOrProductView = "profile";
+      state.allProfileView = false;
+      state.allProductView = true;
+    },
     setUserEmail(state, email) {
       state.userEmail = email;
     },
@@ -53,6 +79,18 @@ export default new Vuex.Store({
     },
     setTwitterScreenName(state, twitter) {
       state.twitterScreenName = twitter;
+    },
+    setProfileDescription(state, description) {
+      state.profileDescription = description;
+    },
+    setProductInfo(state, productArray) {
+      state.productInfo = productArray;
+    },
+    setAllProfile(state, allProfile) {
+      state.allProfile = allProfile;
+    },
+    setAllProduct(state, allProduct) {
+      state.allProduct = allProduct;
     },
   },
 });

@@ -8,6 +8,7 @@ exports.up = function(knex) {
           .unique();
         table.string("name").notNullable();
         table.string("image");
+        table.string("category").notNullable();
         table.text("description");
         table.float("price").notNullable();
         table

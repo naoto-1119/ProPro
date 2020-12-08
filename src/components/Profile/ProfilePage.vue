@@ -8,7 +8,6 @@
       <div class="row">
         <ProfileImage class="profile-image" />
         <ProfileSummary class="profile-summary" />
-        <ProfileFeature class="profile-feature" />
       </div>
       <TwitterLink />
     </div>
@@ -19,7 +18,6 @@
 import ProfileImage from "./ProfileImage.vue";
 import TwitterLink from "./TwitterLink.vue";
 import ProfileSummary from "./ProfileSummary.vue";
-import ProfileFeature from "./ProfileFeature.vue";
 import ToggleButton from "./ToggleButton.vue";
 import ProductPage from "../Product/ProductPage";
 
@@ -29,7 +27,6 @@ export default {
     ProfileImage,
     TwitterLink,
     ProfileSummary,
-    ProfileFeature,
     ToggleButton,
     ProductPage,
   },
@@ -57,7 +54,7 @@ export default {
 .wrapper {
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
+  width: 75%;
 }
 .toggle-button {
   margin-left: auto;

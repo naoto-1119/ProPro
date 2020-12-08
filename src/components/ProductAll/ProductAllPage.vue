@@ -1,9 +1,10 @@
 <template>
   <div>
+    <h1>Products</h1>
     <div
-      class="product-cards"
+      class="all-product-cards"
       style="width: 18rem;"
-      v-for="product in this.$store.state.productInfo"
+      v-for="product in this.$store.state.allProduct"
       :key="product.product_id"
     >
       <img
@@ -27,24 +28,26 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "product-image",
-  computed: {
-    products() {
-      return this.$store.state.productInfo;
-    },
+  name: "all-product",
+  async mounted() {
+    const allProfile = await axios.get("/users/profile/all", {});
+    console.log("product:", allProfile.data);
+    this.$store.commit("setAllProfile", allProfile.data);
+    const allProduct = await axios.get("/users/product/all", {});
+    console.log("product:", allProduct.data);
+    this.$store.commit("setAllProduct", allProduct.data);
   },
 };
 </script>
 
 <style>
-.product-tag {
-  margin-left: 3px;
-}
-.product-cards {
+.all-product-cards {
   display: inline-block;
   margin-right: 10px;
-  margin-top: 10px;
-  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
+  margin-bottom: 10px;
+  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.38);
 }
 </style>

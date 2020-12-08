@@ -70,8 +70,10 @@ export default {
           console.log("profile:", profile);
           const user_name = profile.data[0].user_name;
           const twitter_screen_name = profile.data[0].twitter_screen_name;
+          const description = profile.data[0].description;
           this.$store.commit("setUserName", user_name);
           this.$store.commit("setTwitterScreenName", twitter_screen_name);
+          this.$store.commit("setProfileDescription", description);
           this.$store.commit("changeToProfilePage");
         })
         .catch((e) => {

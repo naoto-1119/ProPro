@@ -4,6 +4,9 @@ const path = require("path");
 const db = require("./knex.js");
 const bodyParser = require("body-parser");
 
+const axios = require("axios");
+const Oauth1Helper = require("./oauth1helper.js");
+
 const app = express();
 
 // Setup Logger
@@ -53,7 +56,61 @@ app.get("/users/profile/id", async (req, res) => {
 // gets tweets for specific user
 app.get("/users/tweets", async (req, res) => {
   try {
-    res.send(req.body);
+    const screenName = "realDonaldTrump";
+    const baseUrl = "https://api.twitter.com/1.1/statuses/user_timeline.json";
+    const fullUrl =
+      baseUrl + "?screen_name=" + screenName + "&count=5&include_rts=true";
+
+    const request = {
+      //  url: "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=realDonaldTrump&count=5&include_rts=false",
+      // url: `${baseUrl}?screen_name=${screenName}&count=5&include_rts=false`,
+      url: fullUrl,
+      method: "GET",
+      body: null,
+    };
+
+    let header = Oauth1Helper.getAuthHeaderForRequest(request);
+    // const params = {
+    //   screen_name: "realDonaldTrump",
+    //   count: 5,
+    //   include_rts: false,
+    // };
+    // res.send(header);
+    // const result = await axios.get("https://jsonplaceholder.typicode.com/posts/1");
+    const result = await axios.get(request.url, { headers: header });
+    // const result = await axios.get(request.url, {params:params, headers: header });
+    res.send(result.data.map((tweet) => tweet.id));
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+app.get("/users/product/id", async (req, res) => {
+  try {
+    const { userId } = req.query;
+    const product = await db
+      .select()
+      .where({ user_id: userId })
+      .table("product");
+    res.send(product);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+app.get("/users/profile/all", async (req, res) => {
+  try {
+    const allProfile = await db.select().table("profile");
+    res.send(allProfile);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+app.get("/users/product/all", async (req, res) => {
+  try {
+    const allProduct = await db.select().table("product");
+    res.send(allProduct);
   } catch (err) {
     res.send(err);
   }
@@ -91,6 +148,17 @@ app.post("/users/profile", async (req, res) => {
   try {
     const profileObj = req.body;
     const result = await db("profile").insert(profileObj);
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+// Inserts product info to product table
+app.post("/users/product", async (req, res) => {
+  try {
+    const productObj = req.body;
+    const result = await db("product").insert(productObj);
     res.send(result);
   } catch (err) {
     res.send(err);

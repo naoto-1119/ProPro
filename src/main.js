@@ -5,10 +5,12 @@ import store from "./store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import firebase from "firebase";
+import { Tweet } from "vue-tweet-embed";
 
 Vue.config.productionTip = false;
 
 Vue.use(BootstrapVue);
+Vue.component("Tweet", Tweet);
 
 const firebaseConfig = {
   apiKey: "AIzaSyDn9ppkH1Yq6BfcvIu32zj1aJnmM5oepHM",
