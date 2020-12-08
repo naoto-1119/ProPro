@@ -5,16 +5,16 @@
       <p class="card-text">
         {{ this.$store.state.profileDescription }}
       </p>
-      <b-badge class="twitter" pill variant="info">{{
+      <b-badge class="twitter" pill variant="light-blue">{{
         "@" + this.$store.state.twitterScreenName
       }}</b-badge>
       <b-badge class="instagram" pill variant="info">{{
         "@" + "instagram"
       }}</b-badge>
-      <b-badge class="facebook" pill variant="info">{{
+      <b-badge class="facebook" pill variant="blue">{{
         "@" + "facebook"
       }}</b-badge>
-      <b-badge class="youtube" pill variant="info">{{
+      <b-badge class="youtube" pill variant="red">{{
         "@" + "youtube"
       }}</b-badge>
     </div>
@@ -35,10 +35,12 @@ export default {
 .twitter {
   margin-right: 3px;
   background: #00a6ff;
+  color: white;
 }
 .facebook {
   background: blue;
   margin-right: 3px;
+  color: white;
 }
 .instagram {
   background: radial-gradient(
@@ -49,9 +51,11 @@ export default {
     #d6249f 60%,
     #285aeb 90%
   );
+  color: white;
   margin-right: 3px;
 }
 .youtube {
   background: red;
+  color: white;
 }
 </style>

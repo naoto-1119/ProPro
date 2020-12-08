@@ -56,30 +56,21 @@ app.get("/users/profile/id", async (req, res) => {
 // gets tweets for specific user
 app.get("/users/tweets", async (req, res) => {
   try {
-    const screenName = "realDonaldTrump";
+    const { screenName } = req.query;
+    // const screenName  = "realDonaldTrump";
     const baseUrl = "https://api.twitter.com/1.1/statuses/user_timeline.json";
-    const fullUrl =
-      baseUrl + "?screen_name=" + screenName + "&count=5&include_rts=true";
 
     const request = {
-      //  url: "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=realDonaldTrump&count=5&include_rts=false",
-      // url: `${baseUrl}?screen_name=${screenName}&count=5&include_rts=false`,
-      url: fullUrl,
+      url: `${baseUrl}?screen_name=${screenName}&count=5&include_rts=false`,
       method: "GET",
       body: null,
     };
 
     let header = Oauth1Helper.getAuthHeaderForRequest(request);
-    // const params = {
-    //   screen_name: "realDonaldTrump",
-    //   count: 5,
-    //   include_rts: false,
-    // };
-    // res.send(header);
-    // const result = await axios.get("https://jsonplaceholder.typicode.com/posts/1");
+    // res.send(req);
     const result = await axios.get(request.url, { headers: header });
-    // const result = await axios.get(request.url, {params:params, headers: header });
-    res.send(result.data.map((tweet) => tweet.id));
+
+    res.send(result.data.map((tweet) => tweet.id_str));
   } catch (err) {
     res.send(err);
   }

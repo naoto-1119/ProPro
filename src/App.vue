@@ -57,6 +57,14 @@ export default {
 <style>
 #id {
   text-align: center;
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
 }
 .wrapper-main {
   width: 80%;

@@ -16,16 +16,16 @@
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">{{ profile.user_name }}</h5>
-            <b-badge class="twitter" pill variant="info">{{
+            <b-badge class="twitter" pill variant="#00a6ff">{{
               "@" + profile.twitter_screen_name
             }}</b-badge>
             <b-badge class="instagram" pill variant="info">{{
               "@" + "instagram"
             }}</b-badge>
-            <b-badge class="facebook" pill variant="info">{{
+            <b-badge class="facebook" pill variant="blue">{{
               "@" + "facebook"
             }}</b-badge>
-            <b-badge class="youtube" pill variant="info">{{
+            <b-badge class="youtube" pill variant="red">{{
               "@" + "youtube"
             }}</b-badge>
             <p class="card-text">
@@ -64,10 +64,12 @@ export default {
 .twitter {
   margin-right: 3px;
   background: #00a6ff;
+  color: white;
 }
 .facebook {
   background: blue;
   margin-right: 3px;
+  color: white;
 }
 .instagram {
   background: radial-gradient(
@@ -78,9 +80,11 @@ export default {
     #d6249f 60%,
     #285aeb 90%
   );
+  color: white;
   margin-right: 3px;
 }
 .youtube {
   background: red;
+  color: white;
 }
 </style>

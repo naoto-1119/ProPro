@@ -7,8 +7,6 @@ const CONSUMERSECRET = process.env.OAUTH_CONSUMERSECRET;
 const TOKENKEY = process.env.OAUTH_TOKEN;
 const TOKENSECRET = process.env.OAUTH_TOKENSECRET;
 
-// const token = [CONSUMERKEY, CONSUMERSECRET, TOKENKEY, TOKENSECRET];
-
 class Oauth1Helper {
   static getAuthHeaderForRequest(request) {
     const oauth = oauth1a({

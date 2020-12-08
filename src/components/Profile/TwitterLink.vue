@@ -14,8 +14,10 @@
       <button type="button" class="btn btn-primary" v-on:click="getTweets">
         Link Start!
       </button>
+      <div v-for="(tweetid, index) in tweets" :key="index" class="embed-tweets">
+        <Tweet v-bind:id="tweetid"></Tweet>
+      </div>
     </div>
-    <div v-html="embed"></div>
   </div>
 </template>
 
@@ -27,18 +29,27 @@ export default {
   name: "twitter-link",
   data() {
     return {
-      // script tags cannot be run inside a Vue component
-      embed: "<p>this is a test for rendering</p>",
+      tweets: [],
     };
   },
   methods: {
     async getTweets() {
-      let res = await axios.get("/users/tweets", { test: 1 });
+      let res = await axios.get("/users/tweets", {
+        params: {
+          screenName: this.$store.state.twitterScreenName,
+        },
+      });
       console.log("getTweets with", res.data);
+      this.tweets = res.data;
       return res;
     },
   },
 };
 </script>
 
-<style></style>
+<style>
+.embed-tweets {
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
