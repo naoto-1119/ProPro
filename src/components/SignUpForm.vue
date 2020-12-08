@@ -1,5 +1,5 @@
 <template>
-  <form class="container">
+  <form class="wrapper-sign-up">
     <h1>Sign Up</h1>
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
@@ -9,6 +9,7 @@
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
         placeholder="Enter email"
+        v-model="userCredential.userEmail"
       />
     </div>
     <div class="form-group">
@@ -18,25 +19,52 @@
         class="form-control"
         id="exampleInputPassword1"
         placeholder="Password"
+        v-model="userCredential.userPassword"
       />
     </div>
     <button
-      type="submit"
+      type="button"
       class="btn btn-primary"
       v-on:click="changeProfileFormView"
     >
       SignUp
     </button>
+    <div v-if="error">{{ error }}</div>
   </form>
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
   name: "sign-up-form",
+  data() {
+    return {
+      userCredential: {
+        userEmail: "",
+        userPassword: "",
+      },
+      error: null,
+    };
+  },
   methods: {
     changeProfileFormView() {
-      console.log("test");
-      this.$store.commit("changeProfileFormView");
+      console.log("changeProfileFormView");
+      // this.$store.commit("changeProfileFormView");
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(
+          this.userCredential.userEmail,
+          this.userCredential.userPassword
+        )
+        .then((user) => {
+          alert("user created successfully!");
+          console.log("user info:", user);
+          this.$store.commit("changeProfileFormView");
+        })
+        .catch((e) => {
+          this.error = e.message;
+        });
     },
   },
 };
@@ -45,5 +73,11 @@ export default {
 <style>
 .container {
   margin-top: 10px;
+}
+.wrapper-sign-up {
+  margin-top: 10px;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

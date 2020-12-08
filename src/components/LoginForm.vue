@@ -1,5 +1,5 @@
 <template>
-  <form class="container">
+  <form class="wrapper-login">
     <h1>Log In</h1>
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
@@ -9,6 +9,7 @@
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
         placeholder="Enter email"
+        v-model="userCredential.userEmail"
       />
     </div>
     <div class="form-group">
@@ -18,20 +19,63 @@
         class="form-control"
         id="exampleInputPassword1"
         placeholder="Password"
+        v-model="userCredential.userPassword"
       />
     </div>
-    <button type="submit" class="btn btn-primary">Log In</button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      v-on:click="changeToProfilePage"
+    >
+      Log In
+    </button>
+    <div v-if="error">{{ error }}</div>
   </form>
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
   name: "login-form",
+  data() {
+    return {
+      userCredential: {
+        userEmail: "",
+        userPassword: "",
+      },
+      error: null,
+    };
+  },
+  methods: {
+    changeToProfilePage() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(
+          this.userCredential.userEmail,
+          this.userCredential.userPassword
+        )
+        .then((user) => {
+          alert("Log In Successful!");
+          console.log("user info:", user);
+          this.$store.commit("changeToProfilePage");
+        })
+        .catch((e) => {
+          this.error = e.message;
+        });
+    },
+  },
 };
 </script>
 
 <style>
 .container {
   margin-top: 10px;
+}
+.wrapper-login {
+  margin-top: 10px;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

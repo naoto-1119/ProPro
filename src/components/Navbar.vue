@@ -15,9 +15,6 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-item nav-link active" href="#"
-          >Home <span class="sr-only">(current)</span></a
-        >
-        <a class="nav-item nav-link active" href="#"
           >Profile <span class="sr-only">(current)</span></a
         >
         <a class="nav-item nav-link active" href="#"
@@ -47,10 +44,10 @@ export default {
 <style>
 .login {
   position: absolute;
-  margin-left: 80%;
+  margin-left: 70%;
 }
 .sign-up {
   position: absolute;
-  margin-left: 85%;
+  margin-left: 75%;
 }
 </style>

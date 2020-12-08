@@ -36,7 +36,7 @@
       ></textarea>
     </div>
     <button
-      type="submit"
+      type="button"
       class="btn btn-primary"
       v-on:click="changeToProfilePage"
     >

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="wrapper-main">
     <Navbar />
     <div v-if="this.$store.state.loginView">
       <LoginForm />
