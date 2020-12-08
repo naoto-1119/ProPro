@@ -33,8 +33,13 @@ app.use(express.static(path.resolve(__dirname, "..", "dist")));
 // Gets user object specifying the user email address
 app.get("/users", async (req, res) => {
   try {
-    // const {userEmail} = req.query;
-    const user = await db.select().table("users");
+    console.log("im in get user");
+    const { userEmail } = req.query;
+    console.log("req query:", userEmail);
+    const user = await db
+      .select()
+      .where({ email: userEmail })
+      .table("users");
     res.send(user);
   } catch (err) {
     res.send(err);
@@ -60,10 +65,8 @@ app.post("/users", async (req, res) => {
 // Inserts profile info to profile table
 app.post("/users/profile", async (req, res) => {
   try {
-    console.log("im in profile insert");
     const profileObj = req.body;
-    console.log("profile object:", profileObj);
-    const result = await db("users").insert(profileObj);
+    const result = await db("profile").insert(profileObj);
     res.send(result);
   } catch (err) {
     res.send(err);

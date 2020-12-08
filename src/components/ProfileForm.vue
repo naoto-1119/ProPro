@@ -72,7 +72,7 @@ export default {
       const user_name = this.userName;
       const twitter_screen_name = this.twitterScreenName;
       const description = this.description;
-      const user_id = user.user_id;
+      const user_id = user.data[0].user_id;
       console.log(user_id);
       const result = await axios.post("/users/profile", {
         user_name,
