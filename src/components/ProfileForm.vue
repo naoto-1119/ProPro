@@ -73,6 +73,9 @@ export default {
       const twitter_screen_name = this.twitterScreenName;
       const description = this.description;
       const user_id = user.data[0].user_id;
+      this.$store.commit("setUserId", user_id);
+      this.$store.commit("setUserName", user_name);
+      this.$store.commit("setTwitterScreenName", twitter_screen_name);
       console.log(user_id);
       const result = await axios.post("/users/profile", {
         user_name,

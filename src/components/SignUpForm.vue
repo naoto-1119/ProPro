@@ -49,9 +49,6 @@ export default {
     };
   },
   methods: {
-    setUserEmail(email) {
-      this.$store.commit("setUserEmail", email);
-    },
     changeProfileFormView() {
       console.log("changeProfileFormView");
       firebase
@@ -62,7 +59,7 @@ export default {
         )
         .then(async (user) => {
           alert("user created successfully!");
-          this.setUserEmail(user.user.email);
+          this.$store.commit("setUserEmail", user.user.email);
           console.log("user mail:", this.$store.state.userEmail);
           await axios
             .post("/users", { email: user.user.email })

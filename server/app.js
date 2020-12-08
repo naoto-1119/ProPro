@@ -19,16 +19,6 @@ app.use(bodyParser.json());
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, "..", "dist")));
 
-// app.post("/user", async (req, res) => {
-//   try {
-//     const locations = await db.select().table("locations");
-//     res.json(locations);
-//   } catch (err) {
-//     console.error("Error loading locations!", err);
-//     res.sendStatus(500);
-//   }
-// });
-
 // GET API
 // Gets user object specifying the user email address
 app.get("/users", async (req, res) => {
@@ -46,6 +36,29 @@ app.get("/users", async (req, res) => {
   }
 });
 
+// Gets profile info of specific user by user_id
+app.get("/users/profile/id", async (req, res) => {
+  try {
+    const { userId } = req.query;
+    const profile = await db
+      .select()
+      .where({ user_id: userId })
+      .table("profile");
+    res.send(profile);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+// gets tweets for specific user
+app.get("/users/tweets", async (req, res) => {
+  try {
+    res.send(req.body);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 // Inserts user info to user table
 app.post("/users", async (req, res) => {
   try {
@@ -58,6 +71,17 @@ app.post("/users", async (req, res) => {
     res.send(result);
   } catch (err) {
     console.error("Error inserting user in database!", err);
+    res.send(err);
+  }
+});
+
+// Inserts profile info to profile table
+app.post("/users/profile", async (req, res) => {
+  try {
+    const profileObj = req.body;
+    const result = await db("profile").insert(profileObj);
+    res.send(result);
+  } catch (err) {
     res.send(err);
   }
 });

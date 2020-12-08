@@ -35,6 +35,7 @@
 
 <script>
 import firebase from "firebase";
+import axios from "axios";
 
 export default {
   name: "login-form",
@@ -55,9 +56,22 @@ export default {
           this.userCredential.userEmail,
           this.userCredential.userPassword
         )
-        .then((user) => {
+        .then(async (userInfo) => {
           alert("Log In Successful!");
-          console.log(user.user.email);
+          this.$store.commit("setUserEmail", userInfo.user.email);
+          const user = await axios.get("/users", {
+            params: { userEmail: this.$store.state.userEmail },
+          });
+          const user_id = user.data[0].user_id;
+          this.$store.commit("setUserId", user_id);
+          const profile = await axios.get("/users/profile/id", {
+            params: { userId: this.$store.state.userId },
+          });
+          console.log("profile:", profile);
+          const user_name = profile.data[0].user_name;
+          const twitter_screen_name = profile.data[0].twitter_screen_name;
+          this.$store.commit("setUserName", user_name);
+          this.$store.commit("setTwitterScreenName", twitter_screen_name);
           this.$store.commit("changeToProfilePage");
         })
         .catch((e) => {

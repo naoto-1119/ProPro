@@ -13,6 +13,9 @@ export default new Vuex.Store({
     loginStatus: false,
     profileOrProductView: "profile",
     userEmail: null,
+    userId: null,
+    userName: null,
+    twitterScreenName: null,
   },
   mutations: {
     changeLoginView(state) {
@@ -41,6 +44,15 @@ export default new Vuex.Store({
     },
     setUserEmail(state, email) {
       state.userEmail = email;
+    },
+    setUserId(state, id) {
+      state.userId = id;
+    },
+    setUserName(state, userName) {
+      state.userName = userName;
+    },
+    setTwitterScreenName(state, twitter) {
+      state.twitterScreenName = twitter;
     },
   },
 });
