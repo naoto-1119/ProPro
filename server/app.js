@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const db = require("./knex.js");
+const bodyParser = require("body-parser");
 
 const app = express();
 
@@ -12,16 +13,60 @@ app.use(
   )
 );
 
+// Setup Middleware Parser
+app.use(bodyParser.json());
+
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, "..", "dist")));
 
-app.get("/api/locations", async (req, res) => {
+// app.post("/user", async (req, res) => {
+//   try {
+//     const locations = await db.select().table("locations");
+//     res.json(locations);
+//   } catch (err) {
+//     console.error("Error loading locations!", err);
+//     res.sendStatus(500);
+//   }
+// });
+
+// GET API
+// Gets user object specifying the user email address
+app.get("/users", async (req, res) => {
   try {
-    const locations = await db.select().table("locations");
-    res.json(locations);
+    // const {userEmail} = req.query;
+    const user = await db.select().table("users");
+    res.send(user);
   } catch (err) {
-    console.error("Error loading locations!", err);
-    res.sendStatus(500);
+    res.send(err);
+  }
+});
+
+// Inserts user info to user table
+app.post("/users", async (req, res) => {
+  try {
+    console.log("im in user insert");
+    const email = req.body.email;
+    const result = await db("users").insert({
+      email,
+    });
+    console.log(result);
+    res.send(result);
+  } catch (err) {
+    console.error("Error inserting user in database!", err);
+    res.send(err);
+  }
+});
+
+// Inserts profile info to profile table
+app.post("/users/profile", async (req, res) => {
+  try {
+    console.log("im in profile insert");
+    const profileObj = req.body;
+    console.log("profile object:", profileObj);
+    const result = await db("users").insert(profileObj);
+    res.send(result);
+  } catch (err) {
+    res.send(err);
   }
 });
 

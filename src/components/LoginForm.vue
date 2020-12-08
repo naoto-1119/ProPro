@@ -57,7 +57,7 @@ export default {
         )
         .then((user) => {
           alert("Log In Successful!");
-          console.log("user info:", user);
+          console.log(user.user.email);
           this.$store.commit("changeToProfilePage");
         })
         .catch((e) => {

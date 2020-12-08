@@ -12,10 +12,11 @@
     "test:unit": "vue-cli-service test:unit",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
-    "seed": "knex seed:run "
+    "seed": "node ./data/import.js"
   },
   "dependencies": {
     "axios": "^0.21.0",
+    "body-parser": "^1.19.0",
     "bootstrap-vue": "^2.20.1",
     "core-js": "^3.7.0",
     "dotenv": "^8.2.0",

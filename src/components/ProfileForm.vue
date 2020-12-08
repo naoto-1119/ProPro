@@ -16,6 +16,7 @@
         class="form-control"
         id="exampleFormControlInput1"
         placeholder="sellyourself1234"
+        v-model="userName"
       />
     </div>
     <div class="form-group">
@@ -25,6 +26,7 @@
         class="form-control"
         id="exampleFormControlInput1"
         placeholder="sellyourself1234"
+        v-model="twitterScreenName"
       />
     </div>
     <div class="form-group">
@@ -33,6 +35,7 @@
         class="form-control"
         id="exampleFormControlTextarea1"
         rows="3"
+        v-model="description"
       ></textarea>
     </div>
     <button
@@ -46,10 +49,38 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "profile-form-view",
+  data() {
+    return {
+      userName: "",
+      twitterScreenName: "",
+      description: "",
+    };
+  },
   methods: {
-    changeToProfilePage() {
+    async changeToProfilePage() {
+      console.log(this.userName);
+      console.log(this.twitterScreenName);
+      console.log(this.description);
+      const user = await axios.get("/users", {
+        params: { userEmail: this.$store.state.userEmail },
+      });
+      console.log("get request user:", user);
+      const user_name = this.userName;
+      const twitter_screen_name = this.twitterScreenName;
+      const description = this.description;
+      const user_id = user.user_id;
+      console.log(user_id);
+      const result = await axios.post("/users/profile", {
+        user_name,
+        description,
+        twitter_screen_name,
+        user_id,
+      });
+      console.log("result :", result);
       this.$store.commit("changeToProfilePage");
     },
   },

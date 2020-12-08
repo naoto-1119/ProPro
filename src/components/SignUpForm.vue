@@ -35,6 +35,7 @@
 
 <script>
 import firebase from "firebase";
+import axios from "axios";
 
 export default {
   name: "sign-up-form",
@@ -48,18 +49,25 @@ export default {
     };
   },
   methods: {
+    setUserEmail(email) {
+      this.$store.commit("setUserEmail", email);
+    },
     changeProfileFormView() {
       console.log("changeProfileFormView");
-      // this.$store.commit("changeProfileFormView");
       firebase
         .auth()
         .createUserWithEmailAndPassword(
           this.userCredential.userEmail,
           this.userCredential.userPassword
         )
-        .then((user) => {
+        .then(async (user) => {
           alert("user created successfully!");
-          console.log("user info:", user);
+          this.setUserEmail(user.user.email);
+          console.log("user mail:", this.$store.state.userEmail);
+          await axios
+            .post("/users", { email: user.user.email })
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
           this.$store.commit("changeProfileFormView");
         })
         .catch((e) => {

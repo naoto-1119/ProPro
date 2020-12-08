@@ -12,6 +12,7 @@ export default new Vuex.Store({
     profilePage: false,
     loginStatus: false,
     profileOrProductView: "profile",
+    userEmail: null,
   },
   mutations: {
     changeLoginView(state) {
@@ -37,6 +38,9 @@ export default new Vuex.Store({
     },
     changeToProductView(state) {
       state.profileOrProductView = "product";
+    },
+    setUserEmail(state, email) {
+      state.userEmail = email;
     },
   },
 });
