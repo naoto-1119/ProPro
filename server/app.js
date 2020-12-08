@@ -67,7 +67,6 @@ app.get("/users/tweets", async (req, res) => {
     };
 
     let header = Oauth1Helper.getAuthHeaderForRequest(request);
-    // res.send(req);
     const result = await axios.get(request.url, { headers: header });
 
     res.send(result.data.map((tweet) => tweet.id_str));
