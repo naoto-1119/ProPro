@@ -15,7 +15,6 @@
         type="text"
         class="form-control"
         id="exampleFormControlInput1"
-        placeholder="sellyourself1234"
         v-model="userName"
       />
     </div>
@@ -25,7 +24,6 @@
         type="text"
         class="form-control"
         id="exampleFormControlInput1"
-        placeholder="sellyourself1234"
         v-model="twitterScreenName"
       />
     </div>
