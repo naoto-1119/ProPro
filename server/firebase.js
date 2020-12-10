@@ -1,12 +1,11 @@
 require("dotenv").config();
 
-const apiKey = process.env.FB_APIKEY;
-const authDomain = process.env.FB_AUTHDOMAIN;
-const projectId = process.env.FB_PROJECTID;
-const storageBucket = process.env.FB_STORAGEBUCKET;
-const messagingSenderId = process.env.FB_MESSAGINGSENDERID;
-const appId = process.env.FB_APPID;
-const test = process.env.OAUTH_CONSUMERKEY;
+const apiKey = process.env.VUE_APP_APIKEY;
+const authDomain = process.env.VUE_APP_AUTHDOMAIN;
+const projectId = process.env.VUE_APP_PROJECTID;
+const storageBucket = process.env.VUE_APP_STORAGEBUCKET;
+const messagingSenderId = process.env.VUE_APP_MESSAGINGSENDERID;
+const appId = process.env.VUE_APP_APPID;
 
 console.log(
   apiKey,
@@ -14,8 +13,7 @@ console.log(
   projectId,
   storageBucket,
   messagingSenderId,
-  appId,
-  test
+  appId
 );
 
 const firebaseConfig = {
