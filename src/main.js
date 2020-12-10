@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import firebase from "firebase";
 import { Tweet } from "vue-tweet-embed";
-import firebaseConfig from "../server/firbase.js";
+import firebaseConfig from "../server/firebase.js";
 
 Vue.config.productionTip = false;
 

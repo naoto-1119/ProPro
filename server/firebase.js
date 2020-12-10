@@ -6,6 +6,7 @@ const projectId = process.env.FB_PROJECTID;
 const storageBucket = process.env.FB_STORAGEBUCKET;
 const messagingSenderId = process.env.FB_MESSAGINGSENDERID;
 const appId = process.env.FB_APPID;
+const test = process.env.OAUTH_CONSUMERKEY;
 
 console.log(
   apiKey,
@@ -13,7 +14,8 @@ console.log(
   projectId,
   storageBucket,
   messagingSenderId,
-  appId
+  appId,
+  test
 );
 
 const firebaseConfig = {
