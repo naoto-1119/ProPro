@@ -51,6 +51,8 @@
     <div class="row">
       <div class="col-8">
         <h4>Reviews</h4>
+        <!-- collapse comes in -->
+        <Review />
         <div class="card">
           <div class="d-flex">
             <div class="d-flex-inline-p2">
@@ -182,10 +184,13 @@
 
 <script>
 import axios from "axios";
+import Review from "./Review";
 
 export default {
   name: "purchase-page",
-  components: {},
+  components: {
+    Review,
+  },
   async mounted() {
     const product = await axios.get("/users/product/id", {
       params: { userId: this.$store.state.userId },
