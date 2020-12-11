@@ -1,23 +1,30 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">ProPro</a>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+  <nav
+    class="navbar navbar-expand-lg navbar navbar-dark bg-dark container-fluid"
+  >
+    <a class="navbar-brand col-xs-1" href="/">ProPro</a>
+    <div
+      class="collapse navbar-collapse navbar-left"
+      id="bs-example-navbar-collapse-1"
+    >
       <div class="navbar-nav">
         <button
-          class="nav-item nav-link active"
+          class="nav-item nav-link active col-xs-1"
           v-on:click="changeToAllProfileView"
         >
           Profile <span class="sr-only">(current)</span>
         </button>
         <button
-          class="nav-item nav-link active"
+          class="nav-item nav-link active col-xs-1"
           v-on:click="changeToAllProductView"
         >
           Product <span class="sr-only">(current)</span>
         </button>
       </div>
-      <Login class="login" />
-      <SignUp class="sign-up" />
+      <div class="nav navbar-nav ml-auto">
+        <Login class="login mr-2" />
+        <SignUp class="sign-up" />
+      </div>
     </div>
   </nav>
 </template>
@@ -44,14 +51,9 @@ export default {
 </script>
 
 <style>
-.login {
-  position: absolute;
-  margin-left: 70%;
-}
-.sign-up {
-  position: absolute;
-  margin-left: 75%;
-}
+/* .login {
+  margin-right: px;
+} */
 .nav-item {
   background: none;
   margin-right: 8px;
