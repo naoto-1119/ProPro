@@ -1,7 +1,7 @@
 <template>
   <img
     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8rXH4vmbNMBvyxWRCb0htcTMWVWFkM6ijqA&usqp=CAU"
-    class="img-thumbnail profile-image"
+    class="img-thumbnail profile-image rounded"
   />
 </template>
 

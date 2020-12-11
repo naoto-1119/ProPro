@@ -20,6 +20,9 @@
       <div v-else-if="this.$store.state.profilePage">
         <ProfilePage />
       </div>
+      <div v-else-if="this.$store.state.purchasePageView">
+        <PurchasePage />
+      </div>
       <div v-else-if="!this.$store.state.loginView">
         <h2>Recent Activity</h2>
         <h2>Featured Item</h2>
@@ -38,6 +41,7 @@ import ProfileForm from "./components/ProfileForm.vue";
 import ProfilePage from "./components/Profile/ProfilePage.vue";
 import ProfileAllPage from "./components/ProfileAll/ProfileAllPage.vue";
 import ProductAllPage from "./components/ProductAll/ProductAllPage.vue";
+import PurchasePage from "./components/Purchase/PurchasePage.vue";
 
 export default {
   name: "app",
@@ -50,6 +54,7 @@ export default {
     ProfilePage,
     ProfileAllPage,
     ProductAllPage,
+    PurchasePage,
   },
 };
 </script>

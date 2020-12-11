@@ -13,6 +13,7 @@ export default new Vuex.Store({
     loginStatus: false,
     allProfileView: false,
     allProductView: false,
+    purchasePageView: true,
     profileOrProductView: "profile",
     userEmail: null,
     userId: null,

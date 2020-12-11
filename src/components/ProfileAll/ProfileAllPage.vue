@@ -4,7 +4,7 @@
     <div
       v-for="profile in this.$store.state.allProfile"
       :key="profile.user_id"
-      class="all-cards"
+      class="all-cards rounded"
       style="max-width: 540px;"
     >
       <div class="row g-0">

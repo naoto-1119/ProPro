@@ -2,7 +2,7 @@
   <div>
     <h1>Products</h1>
     <div
-      class="all-product-cards"
+      class="all-product-cards rounded"
       style="width: 18rem;"
       v-for="product in this.$store.state.allProduct"
       :key="product.product_id"
@@ -18,7 +18,7 @@
         <b-badge class="product-tag" pill variant="danger">{{
           "$" + product.price
         }}</b-badge>
-        <p class="card-text">
+        <p class="card-text text-wrap text-truncate col-sm-15 pl-1">
           {{ product.description }}
         </p>
         <a href="#" class="btn btn-primary">Purchase</a>
