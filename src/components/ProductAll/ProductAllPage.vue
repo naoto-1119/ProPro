@@ -4,7 +4,7 @@
     <div
       class="all-product-cards rounded"
       style="width: 18rem;"
-      v-for="product in this.$store.state.allProduct"
+      v-for="(product, index) in this.$store.state.allProduct"
       :key="product.product_id"
     >
       <img
@@ -21,7 +21,13 @@
         <p class="card-text text-wrap text-truncate col-sm-15 pl-1">
           {{ product.description }}
         </p>
-        <a href="#" class="btn btn-primary">Purchase</a>
+        <button
+          type="button"
+          class="btn btn-primary"
+          v-on:click="changeToPurchasePageView(index)"
+        >
+          Details
+        </button>
       </div>
     </div>
   </div>
@@ -39,6 +45,15 @@ export default {
     const allProduct = await axios.get("/users/product/all", {});
     console.log("product:", allProduct.data);
     this.$store.commit("setAllProduct", allProduct.data);
+  },
+  methods: {
+    changeToPurchasePageView(index) {
+      this.$store.commit(
+        "setSelectedProduct",
+        this.$store.state.allProduct[index]
+      );
+      this.$store.commit("changeToPurchasePageView");
+    },
   },
 };
 </script>

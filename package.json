@@ -28,6 +28,7 @@
     "morgan": "^1.10.0",
     "oauth-1.0a": "^2.2.6",
     "pg": "^8.5.1",
+    "vee-validate": "^4.0.4",
     "vue": "^2.6.12",
     "vue-tweet-embed": "^2.4.0",
     "vue2-google-maps": "^0.10.7",

@@ -20,7 +20,9 @@
         <p class="card-text text-wrap text-truncate col-sm-15 pl-1">
           {{ product.description }}
         </p>
-        <a href="#" class="btn btn-primary">Purchase</a>
+        <button type="button" class="btn btn-primary">
+          Details
+        </button>
       </div>
     </div>
   </div>

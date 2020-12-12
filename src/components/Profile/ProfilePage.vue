@@ -20,6 +20,7 @@ import TwitterLink from "./TwitterLink.vue";
 import ProfileSummary from "./ProfileSummary.vue";
 import ToggleButton from "./ToggleButton.vue";
 import ProductPage from "../Product/ProductPage";
+import axios from "axios";
 
 export default {
   name: "profile-page",
@@ -30,7 +31,14 @@ export default {
     ToggleButton,
     ProductPage,
   },
-  methods: {},
+  async mounted() {
+    console.log(this.$store.state.userId);
+    const userProfile = await axios.get("/users/profile/id", {
+      params: { userId: this.$store.state.userId },
+    });
+    console.log(userProfile);
+    this.$store.commit("setProfileId", userProfile.data[0].profile_id);
+  },
 };
 </script>
 
