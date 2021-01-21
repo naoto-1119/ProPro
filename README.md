@@ -9,9 +9,12 @@ This is project created during my student time in Code Chrysalis. ProPro provide
 ・ Get 5 Latest Activity from Twitter (Post/Retweet)  
 ・ List Product with name, category, price, and description of the product  
 ・ View all users profile/product information
+・ Comment and Rating to Product Owners
 
 ## Features (To Be Added)
-・ TBD
+・ Media Storage via Firebase Storage
+・ Home Screen construction
+・ Payment functionality implementation using Stripe
 
 ## Steps To Create Acccount
 1. Go to -> https://proprolive.herokuapp.com/
@@ -32,7 +35,10 @@ Account is Created :)
   Server - Express  
   HTTP Request - Axios  
   Front End - Vue/Bootstrap(CSS)
+  Authentication - Firebase Authentication
+  Deployment - Heroku
 
 #### History 
 - Read Me created on 12/9/2020 (JST)
+- Updated on 1/21/2021 (JST)
 
