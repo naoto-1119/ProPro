@@ -64,7 +64,7 @@
     <h4>Reviews</h4>
     <!-- collapse comes in -->
     <Review />
-    <div v-for="(review, index) in this.$store.state.reviewInfo" :key="index">
+    <div v-for="(review, index) in this.reviews()" :key="index">
       <div class="row">
         <div class="col-8">
           <div class="card">
@@ -132,7 +132,13 @@ export default {
     await this.setReviewInfo(review.data);
     console.log("stored reviewInfo:", this.$store.state.reviewInfo);
   },
-  computed: {
+  methods: {
+    setReviewInfo(reviewData) {
+      this.$store.commit("setReviewInfo", reviewData);
+    },
+    changeReviewPostedStatus() {
+      this.$store.commit("changeReviewPostedStatus");
+    },
     reviews() {
       if (this.$store.state.reviewPosted) {
         const review = axios.get("/product/review/id", {
@@ -144,15 +150,8 @@ export default {
         this.setReviewInfo(review.data);
         this.changeReviewPostedStatus();
       }
+      console.log("im here");
       return this.$store.state.reviewInfo;
-    },
-  },
-  methods: {
-    setReviewInfo(reviewData) {
-      this.$store.commit("setReviewInfo", reviewData);
-    },
-    changeReviewPostedStatus() {
-      this.$store.commit("changeReviewPostedStatus");
     },
   },
 };

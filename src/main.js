@@ -8,8 +8,6 @@ import firebase from "firebase";
 import { Tweet } from "vue-tweet-embed";
 import firebaseConfig from "../server/firebase.js";
 
-Vue.config.productionTip = false;
-
 Vue.use(BootstrapVue);
 Vue.component("Tweet", Tweet);
 

@@ -3,7 +3,6 @@ const morgan = require("morgan");
 const path = require("path");
 const db = require("./knex.js");
 const bodyParser = require("body-parser");
-
 const axios = require("axios");
 const Oauth1Helper = require("./oauth1helper.js");
 
