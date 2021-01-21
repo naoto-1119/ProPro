@@ -3,7 +3,6 @@ const morgan = require("morgan");
 const path = require("path");
 const db = require("./knex.js");
 const bodyParser = require("body-parser");
-
 const axios = require("axios");
 const Oauth1Helper = require("./oauth1helper.js");
 
@@ -75,6 +74,7 @@ app.get("/users/tweets", async (req, res) => {
   }
 });
 
+// gets products of specific user
 app.get("/users/product/id", async (req, res) => {
   try {
     const { userId } = req.query;
@@ -88,6 +88,7 @@ app.get("/users/product/id", async (req, res) => {
   }
 });
 
+// gets all profile info
 app.get("/users/profile/all", async (req, res) => {
   try {
     const allProfile = await db.select().table("profile");
@@ -97,10 +98,35 @@ app.get("/users/profile/all", async (req, res) => {
   }
 });
 
+// gets all product info
 app.get("/users/product/all", async (req, res) => {
   try {
     const allProduct = await db.select().table("product");
     res.send(allProduct);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+// gets review info of specific product
+app.get("/product/review/id", async (req, res) => {
+  try {
+    const { productId } = req.query;
+    const reviewInfo = await db("product")
+      .join("review", "review.product_id", "product.product_id")
+      .join("profile", "profile.profile_id", "review.profile_id")
+      .select(
+        "review.review_id",
+        "review.title",
+        "review.description",
+        "review.rating",
+        "review.created_at",
+        "profile.profile_id",
+        "profile.user_name",
+        "profile.twitter_screen_name"
+      )
+      .where("review.product_id", productId);
+    res.send(reviewInfo);
   } catch (err) {
     res.send(err);
   }
@@ -149,6 +175,17 @@ app.post("/users/product", async (req, res) => {
   try {
     const productObj = req.body;
     const result = await db("product").insert(productObj);
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+// Inserts review info to product table
+app.post("/product/review", async (req, res) => {
+  try {
+    const reviewObj = req.body;
+    const result = await db("review").insert(reviewObj);
     res.send(result);
   } catch (err) {
     res.send(err);

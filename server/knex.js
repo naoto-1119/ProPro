@@ -1,30 +1,16 @@
 const knex = require("knex");
+const knexConfig = require("../knexfile.js");
 require("dotenv").config();
 
-const db = knex({
-  client: "pg",
-  connection:
-    process.env.DATABASE_URL ||
-    `postgres://${process.env.USER}:${process.env.PASSWORD}@5432/propro`,
-  searchPath: "public",
-});
+let db;
 
-// const db = knex({
-//   client: "pg",
-//   connection: {
-//     host: process.env.DB_HOST,
-//     user: process.env.DB_USERNAME,
-//     password: process.env.DB_PASSWORD,
-//     database: process.env.DB_NAME,
-//     charset: "utf8",
-//   },
-//   searchPath: "public",
-//   migrations: {
-//     directory: "./migrations",
-//   },
-//   seeds: {
-//     directory: "./data",
-//   },
-// });
+if (
+  process.env
+    .DATABASE_URL /*Production deployment is done in Heroku using DATABASE_URL*/
+) {
+  db = knex(knexConfig.production);
+} else {
+  db = knex(knexConfig.development);
+}
 
 module.exports = db;
