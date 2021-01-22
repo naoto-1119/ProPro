@@ -30,6 +30,11 @@ Account is Created :)
 4. Click the "Link Start" button, which will get your recent Activity in "Twitter".  
 ---
 
+## Steps To Create Acccount
+ID: admin@test.com
+PASS: Hello12345
+---
+
 ## Key Technologies
   Database - Postgres/Knex  
   Server - Express  
